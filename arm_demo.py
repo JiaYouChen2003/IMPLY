@@ -16,14 +16,14 @@ import logging
 
 class Env(ShowBase):
     def __init__(self, src="./src/", model="waiter", debug=True):
+        self.DebugMode = debug
+        if not self.DebugMode:
+            return
+        
         super().__init__(self)
         logging.basicConfig(level=logging.DEBUG,
                             format='%(asctime)s %(levelname)-4s %(message)s',
                             datefmt='%m-%d %H:%M',)
-        self.DebugMode = debug
-        
-        if not self.DebugMode:
-            return
         
         logging.info("Loading model")
         self.running = True
