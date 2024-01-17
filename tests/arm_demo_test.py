@@ -33,7 +33,7 @@ def test_rotate_threeFourPI_roughlyNegativeThreeNegativeFour():
     angle = math.pi
     qx, qy = env.rotate(vec, angle)
     
-    assert -3 + 0.01 > qx > -3 - 0.01
+    assert -4 + 0.01 > qx > -3 - 0.01
     assert -4 + 0.01 > qy > -4 - 0.01
 
 
