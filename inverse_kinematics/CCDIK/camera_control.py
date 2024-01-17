@@ -35,11 +35,11 @@ class CameraControl:
 
         self.speed = speed
 
-        self.zoom = 800
+        self.zoom = 10
 
 
-        self.heading = 180
-        self.pitch = -60
+        self.heading = 0
+        self.pitch = -45
 
         self.node.set_pos( 0, -self.zoom, 0 )
         self.pitch_node.set_hpr( 0, self.pitch, 0 )
