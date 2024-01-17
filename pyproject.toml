@@ -1,6 +1,5 @@
 [tool.pytest.ini_options]
 markers = [
-    "arm_demo: marks tests as arm_demo (deselect with '-m \"not arm_demo\"')",
 ]
 
 [tool.flake8]
