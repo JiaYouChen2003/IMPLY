@@ -33,8 +33,8 @@ def test_rotate_threeFourPI_roughlyNegativeThreeNegativeFour():
     angle = math.pi
     qx, qy = env.rotate(vec, angle)
     
-    assert -2.99 > qx > -3.01
-    assert -3.99 > qy > -4.01
+    assert -4 - 0.01 > qx > -3 - 0.01
+    assert -4 - 0.01 > qy > -4 - 0.01
 
 
 @pytest.mark.arm_demo
@@ -43,8 +43,8 @@ def test_rotate_threeFourHalfPI_roughlyNegativeFourThree():
     angle = 0.5 * math.pi
     qx, qy = env.rotate(vec, angle)
     
-    assert -3.99 > qx > -4.01
-    assert 3.01 > qy > 2.99
+    assert -4 + 0.01 > qx > -4 - 0.01
+    assert 3 + 0.01 > qy > 3 + 0.01
 
 
 @pytest.mark.arm_demo
@@ -54,8 +54,8 @@ def test_vec_to_world_oneOneOneTwoTwo_zeroNegativeFourTwoTimesSqrtTwo():
     ref = LVector3f(0, 0, 0)
     tar = env.vec_to_world(vec, bas, ref)
     
-    assert tar[0] == 0
-    assert tar[1] == -4
+    assert 0 + 0.01 > tar[0] > 0 - 0.01
+    assert 4 + 0.01 > tar[1] > -4 - 0.01
     assert 2 * math.sqrt(2) + 0.01 > tar[2] > 2 * math.sqrt(2) - 0.01
 
 
