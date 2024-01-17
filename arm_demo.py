@@ -4,9 +4,9 @@ from direct.task import Task
 
 from panda3d.core import *
 
-from CCDIK.ik_actor import IKActor
-from CCDIK.utils import *
-from CCDIK.camera_control import CameraControl
+from inverse_kinematics.CCDIK.ik_actor import IKActor
+from inverse_kinematics.CCDIK.utils import *
+from inverse_kinematics.CCDIK.camera_control import CameraControl
 
 import json
 import os
@@ -15,12 +15,15 @@ import logging
 
 
 class Env(ShowBase):
-    def __init__(self, src="../src/", model="waiter", debug=True):
+    def __init__(self, src="./src/", model="waiter", debug=True):
         super().__init__(self)
         logging.basicConfig(level=logging.DEBUG,
                             format='%(asctime)s %(levelname)-4s %(message)s',
                             datefmt='%m-%d %H:%M',)
         self.DebugMode = debug
+        
+        if not self.DebugMode:
+            return
         
         logging.info("Loading model")
         self.running = True
@@ -117,8 +120,6 @@ class Env(ShowBase):
             joint_tar = (self.dx, self.dy, self.dz)
             if not self.DebugMode and target in self.joint_target:
                 joint_tar = self.nor2real(self.joint_target[target], target)
-            # print(joint_tar)
-            # print(joint_tar)
             self.ik_target[target].setPos(joint_tar)
             self.ik_chain[target].update_ik()
         return Task.cont
