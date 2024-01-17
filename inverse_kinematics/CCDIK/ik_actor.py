@@ -1,6 +1,6 @@
 from direct.actor.Actor import Actor
-#from .ik_chain import IKChain
-from panda3d.ccdik import IKChain
+from .ik_chain import IKChain
+# from panda3d.ccdik import IKChain
 
 class IKActor():
 
@@ -70,7 +70,7 @@ class IKActor():
             expose_node = self.actor.expose_joint( None, "modelRoot", joint_name )
             self.expose_nodes[joint_name] = expose_node
             return expose_node
-         
+        
     def create_ik_chain( self, joint_names ):
         
         chain = IKChain()
