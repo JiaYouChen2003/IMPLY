@@ -33,7 +33,7 @@ class controller():
 
     def penv(self,):
         """
-        This is the function which maintain the panda3d environemt        
+        This is the function which maintain the panda3d environemt
         """
         logging.info("Start running ENV")
         while self.env.running:
@@ -44,7 +44,7 @@ class controller():
     def ppe(self, ):
         """
         This is the function which get the human pose estimation
-        you don't need give parameters, after run __init__ all the parameters would save in self        
+        you don't need give parameters, after run __init__ all the parameters would save in self
         """
         logging.info("Start running PE")
         while self.env.running:
