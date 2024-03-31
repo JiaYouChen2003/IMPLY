@@ -1,17 +1,18 @@
-from direct.showbase.ShowBase import *
 from direct.actor.Actor import Actor
+from direct.showbase.ShowBase import *
 from direct.task import Task
-
-from panda3d.core import *
 
 from inverse_kinematics.CCDIK.ik_actor import IKActor
 from inverse_kinematics.CCDIK.utils import *
 from inverse_kinematics.CCDIK.camera_control import CameraControl
 
 import json
-import os
-import sys
+
 import logging
+import os
+from panda3d.core import *
+import sys
+sys.path.append("./")
 
 
 class Env(ShowBase):
@@ -30,7 +31,7 @@ class Env(ShowBase):
         self.path = src + model
         self.model = Actor(os.path.join(self.path, "model.fbx"))
         self.root = self.render.attach_new_node("Root")
-        self.ik_actor = IKActor(self.model)
+        self.ik_actor = IKActor(self.model, os.path.join(self.path, "texture.jpg"))
         self.ik_actor.reparent_to(self.root)
         logging.info("Success loading model")
         
