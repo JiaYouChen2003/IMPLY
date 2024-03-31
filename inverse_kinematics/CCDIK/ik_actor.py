@@ -1,16 +1,20 @@
 from direct.actor.Actor import Actor
 from .ik_chain import IKChain
-# from panda3d.ccdik import IKChain
-
+from direct.showbase.Loader import Loader
+import os
 class IKActor():
 
-    def __init__( self, model ):
+    def __init__( self, model, path = None):
 
         self.model = model
 
         self.character_node = self.model.find("-Character")
         self.actor = Actor(self.character_node)
-
+        
+        if not path is None:
+            tex = Loader.loadTexture(self, path)
+            self.actor.setTexture(tex, 1)
+        
         self.parent = None
 
         self.control_nodes = {}
@@ -70,18 +74,18 @@ class IKActor():
             expose_node = self.actor.expose_joint( None, "modelRoot", joint_name )
             self.expose_nodes[joint_name] = expose_node
             return expose_node
-        
+         
     def create_ik_chain( self, joint_names ):
         
-        chain = IKChain()
+        chain = IKChain( actor=self.actor )
 
-        parent_ik_joint = None
+        parent_bone = None
         for joint_name in joint_names:
             assert joint_name in self.joints.keys(), "Joint '" + joint_name + "' cannot be added to chain - not found!" 
             joint = self.joints[joint_name]
             control_node = self.get_control_node( joint_name )
-            new_ik_joint = chain.add_joint( joint, control_node, parent_ik_joint=parent_ik_joint )
-            parent_ik_joint = new_ik_joint
+            new_bone = chain.add_joint( joint, control_node, parent_bone=parent_bone )
+            parent_bone = new_bone
 
         #chain.debug_display()
 

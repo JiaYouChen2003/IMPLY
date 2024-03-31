@@ -8,7 +8,7 @@ from .utils import *
 
 class CameraControl:
 
-    def __init__( self, node, mouse_watcher_node, speed=0.8 ):
+    def __init__( self, node, mouse_watcher_node, speed=2 ):
 
         self.node = node
 
@@ -16,7 +16,7 @@ class CameraControl:
         self.pitch_node = self.heading_node.attach_new_node( "Camera_pitch_rot_node" )
         self.node.reparent_to( self.pitch_node )
 
-        self.heading_node.set_pos( 0, 0, 0.5 )
+        self.heading_node.set_pos( 0, 0, 100 )
 
         #self.focus_node = render.attach_new_node("Camera_focus_node")
         self.attached = False
@@ -35,11 +35,11 @@ class CameraControl:
 
         self.speed = speed
 
-        self.zoom = 800
+        self.zoom = 500
 
 
-        self.heading = 180
-        self.pitch = -60
+        self.heading = 135
+        self.pitch = -30
 
         self.node.set_pos( 0, -self.zoom, 0 )
         self.pitch_node.set_hpr( 0, self.pitch, 0 )
@@ -94,7 +94,7 @@ class CameraControl:
             quat.set_from_axis_angle( self.heading, LVector3f.unit_z())
             rotated = quat.xform( LVector3f( -forward, sideways, 0 ))
 
-            self.heading_node.set_pos( self.heading_node.get_pos() - rotated*globalClock.get_dt() )
+            self.heading_node.set_pos( self.heading_node.get_pos() - rotated )
 
         
         #self.ang_y = max( 0, min( math.pi*0.4, self.ang_y ) )

@@ -1,5 +1,6 @@
 import math
 import random
+import numpy as np
 
 from panda3d.core import LMatrix3f, LVector3f, BoundingBox, BoundingVolume, Quat
 
@@ -31,7 +32,7 @@ def seg_seg_intersection( start1, end1, start2, end2 ):
 
     width1 = max( start1.size, end1.size )
     width2 = max( start2.size, end2.size )
-  
+    
     min1 = LVector3f(
             min( start1.pos.x, end1.pos.x ) - width1,
             min( start1.pos.y, end1.pos.y ) - width1,
@@ -185,7 +186,7 @@ def closest_point_on_segment( a, b, p ):
     return result, dist
 
 def closest_point_on_path( path, p ):
-    d2 = math.inf
+    d2 = np.inf
     closest_point = None
     reached_path_end = False
     for i in range(len(path)-1):
@@ -294,20 +295,6 @@ def shortest_rotation( a, b ):
     q.normalize()
     return q
 
-
-def get_perpendicular_vec( vec ):
-    vec = vec.normalized()
-    vec2 = LVector3f.unit_y()
-
-    ang = vec.angle_deg( vec2 )
-    if ang < 0.1 or ang > 179.9:       # Parallel?
-        # Choose a different vector:
-        vec2 = LVector3f.unit_x()
-
-    return vec.cross(vec2).normalized()
-
-
-
 if __name__ == "__main__":
 
     from panda3d.core import LVector3f
@@ -315,7 +302,7 @@ if __name__ == "__main__":
     d1 = LVector3f( 1, 0, 0 )
     p2 = LVector3f( 0, 0, 1 )
     d2 = LVector3f( 0, 1, 0 )
-    print( "Line-line distance:", line_line_distance( p1, d1, p2, d2 ) )
+    print( line_line_distance( p1, d1, p2, d2 ) )
 
 
 
