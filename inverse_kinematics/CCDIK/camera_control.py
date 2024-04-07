@@ -38,8 +38,8 @@ class CameraControl:
         self.zoom = 500
 
 
-        self.heading = 135
-        self.pitch = -30
+        self.heading = 120
+        self.pitch = -20
 
         self.node.set_pos( 0, -self.zoom, 0 )
         self.pitch_node.set_hpr( 0, self.pitch, 0 )
@@ -105,7 +105,7 @@ class CameraControl:
 
         self.node.set_pos( 0, -self.zoom, 0 )
         self.pitch_node.set_hpr( 0, self.pitch, 0 )
-        self.heading_node.set_hpr( self.heading, 0, 0 )
+        self.heading_node.set_hpr( self.heading, 0, 30 )
 
         return Task.cont
 
